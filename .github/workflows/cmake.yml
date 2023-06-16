@@ -34,7 +34,7 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: libtensorflowlite_c.so
+          name: tensorflowlite_c-ubuntu
           path: ${{github.workspace}}/build/libtensorflowlite_c.so
 
   build-macos:
@@ -57,7 +57,7 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: libtensorflowlite_c.dylib
+          name: tensorflowlite_c-macos-${{matrix.arch}}
           path: ${{github.workspace}}/build/libtensorflowlite_c.dylib
 
   build-windows:
@@ -77,5 +77,5 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: tensorflowlite_c.dll
-          path: ${{github.workspace}}/build/tensorflowlite_c.dll
+          name: tensorflowlite_c-windows
+          path: ${{github.workspace}}/build/tensorflowlite_c.dll ${{github.workspace}}/build/tensorflowlite_c.lib
