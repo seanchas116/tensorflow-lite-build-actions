@@ -1,3 +1,6 @@
 [submodule "tensorflow"]
 	path = tensorflow
 	url = https://github.com/tensorflow/tensorflow.git
+[submodule "tensorflow-fork"]
+	path = tensorflow-fork
+	url = https://github.com/seanchas116/tensorflow.git
