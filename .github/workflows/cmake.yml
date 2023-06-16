@@ -69,7 +69,7 @@ jobs:
           submodules: recursive
 
       - name: Configure CMake
-        run: cmake -S tensorflow/tensorflow/lite/c -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_OSX_ARCHITECTURES=${{matrix.arch}}
+        run: cmake -S tensorflow/tensorflow/lite/c -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON
 
       - name: Build
         run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
@@ -78,4 +78,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: tensorflowlite_c-windows
-          path: ${{github.workspace}}/build/tensorflowlite_c.dll ${{github.workspace}}/build/tensorflowlite_c.lib
+          path: ${{github.workspace}}/build/${{env.BUILD_TYPE}}/tensorflowlite_c.*
