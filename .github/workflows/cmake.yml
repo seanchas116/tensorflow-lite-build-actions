@@ -59,3 +59,23 @@ jobs:
         with:
           name: libtensorflowlite_c.dylib
           path: ${{github.workspace}}/build/libtensorflowlite_c.dylib
+
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Configure CMake
+        run: cmake -S tensorflow/tensorflow/lite/c -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_OSX_ARCHITECTURES=${{matrix.arch}}
+
+      - name: Build
+        run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: tensorflowlite_c.dll
+          path: ${{github.workspace}}/build/tensorflowlite_c.dll
