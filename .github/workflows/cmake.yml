@@ -70,7 +70,7 @@ jobs:
           submodules: recursive
 
       - name: Configure CMake
-        run: cmake -S ${{env.TENSORFLOW_DIR}}/tensorflow/lite/c -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON -DCMAKE_CXX_FLAGS='-DXNNPACK_DELEGATE_ENABLE_QS8=1 -DXNNPACK_DELEGATE_ENABLE_QU8=1'
+        run: cmake -S ${{env.TENSORFLOW_DIR}}/tensorflow/lite/c -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON -DCMAKE_CXX_FLAGS='/DXNNPACK_DELEGATE_ENABLE_QS8=1 /DXNNPACK_DELEGATE_ENABLE_QU8=1'
 
       - name: Build
         run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
